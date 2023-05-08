@@ -6,11 +6,11 @@ const Statictics = ({good, bad, neutral, countTotalFeedback, countPositiveFeedba
     <div className={css.statistics}>
          <h2 className={css.statistics__title }>Statistics</h2>
          <ul className={css.statictics__list}>
-           <li className='statictics__item'>Good: {good}</li>
-           <li className='statictics__item'> Bad: {bad}</li>
-           <li className='statictics__item'> Neutral: {neutral}</li>
-           <li className='statictics__item'> Total: {countTotalFeedback}</li>
-           <li className='statictics__item'>Positive feedback: <span>{countPositiveFeedbackPercentage}%</span></li>
+           <li>Good: {good}</li>
+           <li> Bad: {bad}</li>
+           <li> Neutral: {neutral}</li>
+           <li> Total: {countTotalFeedback}</li>
+           <li>Positive feedback: <span>{countPositiveFeedbackPercentage}%</span></li>
         </ul>
       </div>
   );
