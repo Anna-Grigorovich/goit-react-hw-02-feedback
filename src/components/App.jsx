@@ -1,16 +1,44 @@
-export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+import React, { Component } from 'react';
+import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
+import Statistics from './Statictics/Statistics';
+import { Notification } from './Notification/Notification';
+import css from './App.module.css'
+class App extends Component {
+  state = {
+    good: 0,
+    neutral: 0,
+    bad: 0
+  };
+  onLeaveFeedback = (e) =>{
+    const btnClick = e.target.value;
+    this.setState(p => ({
+      ...p,
+      [btnClick]: p[btnClick] + 1,
+    }))
+  }
+  countTotalFeedback() {
+    const {good, bad, neutral} = this.state;
+    return good + bad + neutral;
+  }
+  countPositiveFeedbackPercentage() {
+    const { good } = this.state;
+    return Math.round((good / this.countTotalFeedback()) * 100);
+  }
+  render() {
+  const btnNames = Object.keys(this.state);
+  const {good, neutral, bad} = this.state;
+  return(
+   <div className={css.App}>
+   <FeedbackOptions options={btnNames} onLeaveFeedback={this.onLeaveFeedback} />  
+  {this.countTotalFeedback() > 0 ? 
+  (<Statistics good={good} neutral={neutral} bad={bad} countTotalFeedback={this.countTotalFeedback()} countPositiveFeedbackPercentage={this.countPositiveFeedbackPercentage()}/>)
+   : (<Notification message="There is no feedback"></Notification>
+)} 
+ </div>
   );
-};
+}
+  
+ }
+ 
+ 
+ export default App;
