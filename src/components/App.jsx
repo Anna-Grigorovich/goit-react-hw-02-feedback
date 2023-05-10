@@ -17,11 +17,11 @@ class App extends Component {
       [btnClick]: p[btnClick] + 1,
     }))
   }
-  countTotalFeedback() {
+  countTotalFeedback = () => {
     const {good, bad, neutral} = this.state;
     return good + bad + neutral;
   }
-  countPositiveFeedbackPercentage() {
+  countPositiveFeedbackPercentage = () => {
     const { good } = this.state;
     return Math.round((good / this.countTotalFeedback()) * 100);
   }
